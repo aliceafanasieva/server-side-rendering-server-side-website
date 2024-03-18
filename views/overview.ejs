@@ -1,0 +1,37 @@
+<%- include('./partials/head_ov_dt') %>
+
+<main class="overview">
+  <article>
+    <h2>Favorite boeken</h2>
+    <ul class="books">
+        <% data.filter(item => item.item_type === 'book').forEach(book => { %>
+            <li onclick="window.location.href='./detail/<%= book.id %>'">
+                <h3><%= book.title %></h3>
+                <img src="https://fdnd-agency.directus.app/assets/<%= book.afbeelding %>" alt="<%= book.title %> Image">
+            </li>
+        <% }); %>
+    </ul>
+
+    <h2>Favorite CD's</h2>
+    <ul class="cds">
+        <% data.filter(item => item.item_type === 'cd').forEach(cd => { %>
+            <li onclick="window.location.href='./detail/<%= cd.id %>'">
+                <h3><%= cd.title %></h3>
+                <img src="https://fdnd-agency.directus.app/assets/<%= cd.afbeelding %>" alt="<%= cd.title %> Image">
+            </li>
+        <% }); %>
+    </ul>
+
+    <h2>Favorite activiteiten</h2>
+    <ul class="activities">
+        <% data.filter(item => item.item_type === 'activity').forEach(activity => { %>
+            <li onclick="window.location.href='./detail/<%= activity.id %>'">
+                <h3><%= activity.title %></h3>
+                <img src="https://fdnd-agency.directus.app/assets/<%= activity.afbeelding %>" alt="<%= activity.title %> Image">
+            </li>
+        <% }); %>
+    </ul>
+  </article>
+</main>
+
+<%- include('./partials/foot') %>
