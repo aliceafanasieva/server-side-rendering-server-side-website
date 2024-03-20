@@ -43,7 +43,7 @@ app.get('/', async function(request, response) {
 
     // .data bevat gegevens die door de API worden geretourneerd.
     // console.log wordt gebruikt om raw fetched data te tonen in de terminal.
-    console.log("API Response", families.data);
+    //console.log("API Response", families.data);
     //console.log("API Response", profiles.data);
 
     // .data eigenschap van families en profiles objects wordt verder gebruikt bij rendering van index pagina.
@@ -65,7 +65,7 @@ app.get('/overview', async function(request, response) {
     const profiles = await fetchJson(apiProfile);
 
     //console.log("API Response items:", items.data);
-    console.log("API Response", profiles.data);
+    //console.log("API Response", profiles.data);
 
     response.render('overview', {
       data: items.data,
@@ -82,12 +82,12 @@ app.get('/overview', async function(request, response) {
 // Het :id is routeparameter in URL, die aangeeft dat het eindpunt 
 // een id-parameter in de URL verwacht.
 app.get('/detail/:id', function(request, response){
-  console.log(request.params)
+  console.log("Request: ", request.params.id)
   // request.params.id geeft de waarde van id parameter terug
   // Het maakt een URL met een filterqueryparameter om alleen het item 
   // met de specifieke ID op te halen.
   fetchJson(apiItem + '?filter={"id":' + request.params.id + '}').then((items) => {
-    
+      console.log("API response data:", items.data)
       response.render('detail', {
         items: items.data
       });

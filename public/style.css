@@ -252,7 +252,11 @@ header {
 
 .welkom {
   padding: 3em;
-  
+
+}
+
+.welkom h1 {
+  text-transform: none;
 }
 
 .overview ul {
@@ -262,10 +266,6 @@ header {
   list-style: none;
   padding: 0;
   margin: 0;
-}
-
-.overview ul h2 {
-  text-align: center;
 }
 
 .overview ul li {
@@ -290,7 +290,7 @@ header {
 
   .overview ul {
     overflow: auto;
-    height: 97vh;
+    height: 36vh;
   }
 }
 
