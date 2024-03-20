@@ -19,7 +19,7 @@ const app = express();
 app.set("view engine", "ejs");
 
 // Stel de map met ejs templates in
-app.set("views", "./views");
+app.set("views", "./views");0
 
 // Gebruik de map 'public' voor statische resources, zoals stylesheets, afbeeldingen en client-side JavaScript
 app.use(express.urlencoded({ extended: true }));
@@ -43,7 +43,7 @@ app.get('/', async function(request, response) {
 
     // .data bevat gegevens die door de API worden geretourneerd.
     // console.log wordt gebruikt om raw fetched data te tonen in de terminal.
-    //console.log("API Response", families.data);
+    console.log("API Response", families.data);
     //console.log("API Response", profiles.data);
 
     // .data eigenschap van families en profiles objects wordt verder gebruikt bij rendering van index pagina.
@@ -62,11 +62,14 @@ app.get('/', async function(request, response) {
 app.get('/overview', async function(request, response) {
   try {
     const items = await fetchJson(apiItem);
+    const profiles = await fetchJson(apiProfile);
 
     //console.log("API Response items:", items.data);
+    console.log("API Response", profiles.data);
 
     response.render('overview', {
-      data: items.data 
+      data: items.data,
+      profiles: profiles.data,
     });
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -94,7 +97,7 @@ app.get('/detail/:id', function(request, response){
 // - - - - - - - Start webserver - - - - - - - -
 
 // Stel het poortnummer in waar express op moet gaan luisteren
-app.set("port", process.env.PORT || 8003);
+app.set("port", process.env.PORT || 8002);
 
 
 // Start express op, haal daarbij het zojuist ingestelde poortnummer op
