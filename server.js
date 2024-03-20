@@ -19,7 +19,7 @@ const app = express();
 app.set("view engine", "ejs");
 
 // Stel de map met ejs templates in
-app.set("views", "./views");0
+app.set("views", "./views");
 
 // Gebruik de map 'public' voor statische resources, zoals stylesheets, afbeeldingen en client-side JavaScript
 app.use(express.urlencoded({ extended: true }));
