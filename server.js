@@ -83,11 +83,23 @@ app.get('/overview', async function(request, response) {
 // een id-parameter in de URL verwacht.
 app.get('/detail/:id', function(request, response){
   console.log("Request: ", request.params.id)
-  // request.params.id geeft de waarde van id parameter terug
-  // Het maakt een URL met een filterqueryparameter om alleen het item 
-  // met de specifieke ID op te halen.
-  fetchJson(apiItem + '?filter={"id":' + request.params.id + '}').then((items) => {
+  // Functie request.params.id geeft de waarde van id terug. 
+  // Het maakt een URL met een filterqueryparameter om alleen  
+  // data van item met de specifieke ID op te halen.
+  // Fetch data uit API gebasseerd op id parameter :
+  fetchJson(apiItem + '?filter={"id":' + request.params.id + '}')
+    .then((items) => {
       console.log("API response data:", items.data)
+
+      // Preprocess data door onnodige <h2> en <strong> tags uit de description te verwijderen
+      items.data.forEach(item => {
+        if (item.description) {
+          item.description = item.description.replace(/<\/?h2[^>]*>/g, '').replace('Samenvatting', '');;
+        }
+      });
+      console.log("API response data:", items.data)
+
+      // Render 'detail' met processed data
       response.render('detail', {
         items: items.data
       });
